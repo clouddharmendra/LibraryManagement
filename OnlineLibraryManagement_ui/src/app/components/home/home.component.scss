@@ -1,0 +1,55 @@
+.item-box {
+  border: solid 1px ghostwhite;
+}
+
+.header {
+  text-align: center;
+}
+
+.button-style{
+  border-radius: 0px 0px 5px 5px;
+  margin-left: 0;
+  width: 150px;
+}
+
+.green-color{
+  background-color: rgb(66, 176, 41);
+}
+
+.gray-color{
+  background-color: rgb(128,128,128);
+}
+
+.book-details{
+  height: 350px;
+  overflow-y: none;
+  margin-top: 25px;
+}
+
+.box {
+  display: flex;
+  flex-wrap: wrap;
+  height: 50px;
+  flex-direction: column;
+  // align-content: space-between;
+  margin-left: 130px;
+}
+
+.search-border{
+  width: 300px;
+  height: 30px;
+}
+
+.search-btn{
+  // border-radius: 5px !important; 
+  margin-right: 10px;
+  font-size: small;
+}
+
+.search-advanced{
+  background-color: rgb(16, 78, 151);
+  color: #fff;
+  // border-radius: 5px;
+  margin-right: 100px;
+  font-size: small;
+}
