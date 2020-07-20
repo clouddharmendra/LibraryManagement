@@ -27,9 +27,6 @@ OnlineLibraryManagement_services: This directory contains back-end api's code, w
   To run this code, open command prompt in this directory and execute below command
 	 >mvnw spring-boot:run
 
-service is running fine or not by http://localhost:8080/shoppingcart/products 
-This microservice loads the products items into MongoDB and the above URL shows the same entered data.
-
-Use http://loclhost:8080/swagger-ui.html to see all exposed micro serves.
+Use http://loclhost:8080/swagger-ui.html to see all exposed microservices.
 
 
