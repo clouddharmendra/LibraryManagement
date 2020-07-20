@@ -24,18 +24,18 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(public onlineLibraryMgmtService: OnlineLibraryMgmtService, public router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    let selBooks = this.route.snapshot.queryParamMap.get('selBook');
-    if (selBooks) {
-      this.selectedBooks = JSON.parse(selBooks);
-      this.selectedBooks.myBooks.forEach((myBooks:Book)=>{
-        this.books.forEach((book:Book)=>{
-          if(book.id === myBooks.id){
-            book.available = false;
-            book.btnText = myBooks.btnText;
-          }
-        });
-      });
-    } else {
+    // let selBooks = this.route.snapshot.queryParamMap.get('selBook');
+    // if (selBooks) {
+    //   this.selectedBooks = JSON.parse(selBooks);
+    //   this.selectedBooks.myBooks.forEach((myBooks:Book)=>{
+    //     this.books.forEach((book:Book)=>{
+    //       if(book.id === myBooks.id){
+    //         book.available = false;
+    //         book.btnText = myBooks.btnText;
+    //       }
+    //     });
+    //   });
+    // } else {
       this.userSubscription$ = this.onlineLibraryMgmtService.userData$.subscribe(user => {
         this.userInfo = user;
         if (null === user || null === user.emailId) {
@@ -64,7 +64,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           });
         }
       });
-    }
+    // }
   }
 
   // To Filter the cloths based on given search criteria.

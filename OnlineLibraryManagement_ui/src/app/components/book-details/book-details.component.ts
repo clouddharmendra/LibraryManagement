@@ -27,6 +27,8 @@ export class BookDetailsComponent implements OnInit {
       } else {
         this.onlineLibraryMgmtService.getSelectedBooksInfo(this.userEmail).subscribe((response: SelectedBooks) => {
           this.selectedBooks = response;
+        },error=>{
+          // this.router.navigateByUrl(appProperties.URL_HOME);
         });
         let bookDetails = this.route.snapshot.queryParamMap.get('book');
         this.bookDetails = JSON.parse(bookDetails);
@@ -43,10 +45,8 @@ export class BookDetailsComponent implements OnInit {
     this.bookDetails.borrowedDate = new Date();
     this.selectedBooks.emailId = this.userEmail;
     this.selectedBooks.myBooks.push(this.bookDetails);
-    let res = this.onlineLibraryMgmtService.updateMyBooks(this.selectedBooks).subscribe(response => {
+    this.onlineLibraryMgmtService.updateMyBooks(this.selectedBooks).subscribe(response => {
+      this.router.navigateByUrl(appProperties.URL_HOME);
     });
-    // this.router.navigateByUrl(appProperties.URL_ACCT);
-    // this.router.navigateByUrl(appProperties.URL_HOME);
-    this.router.navigate([appProperties.URL_HOME], { queryParams: { 'selBook': JSON.stringify(res) } });
   }
 }

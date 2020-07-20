@@ -26,22 +26,22 @@ export class OnlineLibraryMgmtService {
   }
 
   getAllBooks(): any {
-    return this.http.get<any>(environment.getBookssUrl);
+    return this.http.get<any>(environment.endpoint+environment.getBookssUrl);
   }
 
   userLogin(emailId: string): any {
-    return this.http.get<any>(environment.loginUrl + emailId);
+    return this.http.get<any>(environment.endpoint+environment.loginUrl + emailId);
   }
 
   getSelectedBooksInfo(emailId: string) {
-    return this.http.get<any>(environment.getSelectedBooks + emailId);
+    return this.http.get<any>(environment.endpoint+environment.getSelectedBooks + emailId);
   }
 
   saveMyBooks(myBooks: SelectedBooks): any {
-    return this.http.post<any>(environment.saveMyBooks, myBooks);
+    return this.http.post<any>(environment.endpoint+environment.saveMyBooks, myBooks);
   }
 
   updateMyBooks(myBooks: SelectedBooks): any {
-    return this.http.post<any>(environment.updateMyBooks, myBooks);
+    return this.http.post<any>(environment.endpoint+environment.updateMyBooks, myBooks);
   }
 }

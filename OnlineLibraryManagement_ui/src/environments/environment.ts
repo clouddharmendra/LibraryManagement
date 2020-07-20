@@ -1,8 +1,9 @@
 export const environment = {
   production: false,
-  loginUrl: 'http://localhost:6759/library/login/',
-  getBookssUrl: 'http://localhost:6759/library/books',
-  getSelectedBooks: 'http://localhost:6759/library/mybooks/',
-  saveMyBooks: 'http://localhost:6759/library/saveBooks',
-  updateMyBooks: 'http://localhost:6759/library/updatebooks'
+  endpoint: 'http://localhost:8080',
+  loginUrl: '/library/login/',
+  getBookssUrl: '/library/books',
+  getSelectedBooks: '/library/mybooks/',
+  saveMyBooks: '/library/saveBooks',
+  updateMyBooks: '/library/updatebooks'
 };
