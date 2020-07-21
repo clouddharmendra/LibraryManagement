@@ -60,7 +60,7 @@ public class MyBooksController {
 		SelectedBooks updatedBooks = selectedBooksRepository.save(dbBooks);
 		return new ResponseEntity<>(updatedBooks, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/mybooks/clear")
 	public String clearData() throws ResourceNotFoundException {
 		try {

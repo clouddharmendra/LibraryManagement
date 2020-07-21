@@ -25,8 +25,8 @@ export class OnlineLibraryMgmtService {
   constructor(private http: HttpClient) {
   }
 
-  getAllBooks(): any {
-    return this.http.get<any>(environment.endpoint+environment.getBookssUrl);
+  getAllBooks(emailId: string): any {
+    return this.http.get<any>(environment.endpoint+environment.getBookssUrl+emailId);
   }
 
   userLogin(emailId: string): any {

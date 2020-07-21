@@ -38,7 +38,7 @@ export class AdvancedSearchComponent implements OnInit {
       if (null === user) {
         this.router.navigateByUrl(appProperties.URL_WLCM);
       } else {
-        this.onlineLibraryMgmtService.getAllBooks().subscribe(data => {
+        this.onlineLibraryMgmtService.getAllBooks(user.emailId).subscribe((data: Array<Book>) => {
           this.books = data;
         });
       }
@@ -84,8 +84,6 @@ export class AdvancedSearchComponent implements OnInit {
     }
     if (this.booksFilter.length > 0) {
       this.noRecordsFound = false;
-    } else if (!this.noRecordsFound) {
-      // this.booksFilter = this.books;
-    }
+    } 
   }
 }

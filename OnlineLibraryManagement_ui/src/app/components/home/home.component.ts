@@ -24,47 +24,34 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(public onlineLibraryMgmtService: OnlineLibraryMgmtService, public router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    // let selBooks = this.route.snapshot.queryParamMap.get('selBook');
-    // if (selBooks) {
-    //   this.selectedBooks = JSON.parse(selBooks);
-    //   this.selectedBooks.myBooks.forEach((myBooks:Book)=>{
-    //     this.books.forEach((book:Book)=>{
-    //       if(book.id === myBooks.id){
-    //         book.available = false;
-    //         book.btnText = myBooks.btnText;
-    //       }
-    //     });
-    //   });
-    // } else {
-      this.userSubscription$ = this.onlineLibraryMgmtService.userData$.subscribe(user => {
-        this.userInfo = user;
-        if (null === user || null === user.emailId) {
-          this.router.navigateByUrl(appProperties.URL_WLCM);
-        } else {
-          this.allBooksSubscription$ = this.onlineLibraryMgmtService.getAllBooks().subscribe((allBooks: Array<Book>) => {
-            this.selBooksSubscription$ = this.onlineLibraryMgmtService.getSelectedBooksInfo(user.emailId).subscribe((selectedBooks) => {
-              if (null === this.selectedBooks) {
-                this.selectedBooks = new SelectedBooks();
-              } else {
-                this.selectedBooks = selectedBooks;
-                this.selectedBooks.myBooks.forEach((myBook: Book) => {
-                  allBooks.forEach((aBook: Book) => {
-                    if (aBook.id === myBook.id) {
-                      aBook.available = false;
-                      aBook.btnText = myBook.btnText;
-                    }
-                    this.books.push(aBook);
-                  });
+    this.userSubscription$ = this.onlineLibraryMgmtService.userData$.subscribe(user => {
+      this.userInfo = user;
+      if (null === user || null === user.emailId) {
+        this.router.navigateByUrl(appProperties.URL_WLCM);
+      } else {
+        this.allBooksSubscription$ = this.onlineLibraryMgmtService.getAllBooks(user.emailId).subscribe((allBooks: Array<Book>) => {
+          this.selBooksSubscription$ = this.onlineLibraryMgmtService.getSelectedBooksInfo(user.emailId).subscribe((selectedBooks) => {
+            if (null === this.selectedBooks) {
+              this.selectedBooks = new SelectedBooks();
+            } else {
+              this.selectedBooks = selectedBooks;
+              this.selectedBooks.myBooks.forEach((myBook: Book) => {
+                allBooks.forEach((aBook: Book) => {
+                  if (aBook.id === myBook.id) {
+                    aBook.available = false;
+                    aBook.btnText = myBook.btnText;
+                  }
+                  this.books.push(aBook);
                 });
-              }
-            }, error => {
-              this.booksMsterData = this.books = allBooks;
-            });
-            this.booksMsterData = this.books;
+              });
+            }
+          }, error => {
+            this.booksMsterData = this.books = allBooks;
           });
-        }
-      });
-    // }
+          this.booksMsterData = this.books;
+        });
+      }
+    });
   }
 
   // To Filter the cloths based on given search criteria.
@@ -110,7 +97,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.onlineLibraryMgmtService.updateMyBooks(this.selectedBooks).subscribe((response: SelectedBooks) => {
       this.selectedBooks = response;
     }, (error: any) => {
-      console.error('Error :=> ', error)
+      console.error('Error while updating books :::=> ', error)
     });
   }
   ngOnDestroy() {
